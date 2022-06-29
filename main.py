@@ -1,8 +1,11 @@
 import os
 import telebot
+import requests
 
 API_KEY = os.getenv('API_KEY')
 bot = telebot.TeleBot(API_KEY)
+faucet_link = "https://goerlifaucet.com/"
+
 
 @bot.message_handler(commands = ['start'])
 def start(message):
@@ -31,12 +34,19 @@ def faucet(message):
     print(f"{message.from_user.username}: {message.text}")
     print(f"Bot: {msg}")
     bot.reply_to(message, msg)
-    
+    # @bot.message_handler(func=lambda message: True)
+    # def get_address(message):
+    #     print(f"{message.from_user.username}: {message.text}")
+    #     address = message.text
+    #     url_faucet = 'https://goerlifaucet.com/'
+    #     response_search = requests.get(url_faucet)
+    #     print(f"Bot: Successful !" )
+
+
 @bot.message_handler(func=lambda message: True)
 def echo_all(message):
     print(f"{message.from_user.username}: {message.text}")
-    print(f"Bot: {message.text}")
-    bot.reply_to(message, message.text)
-    
+    print(f"Bot: Con gà")
+    bot.reply_to(message, "Con gà")
 
 bot.infinity_polling()
