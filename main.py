@@ -37,8 +37,9 @@ def faucet(message):
 
     address = message.text[8:]
     # send_eth(address) # MẤT TIỀN
-    bot.send_message(message.chat.id, "Successfully sent some tokens to your address !")
-    print(f"Bot: {msg}")
+    msg2 = "Successfully sent some tokens to your address !"
+    bot.send_message(message.chat.id, msg2)
+    print(f"Bot: {msg2}")
 
 @bot.message_handler(func=lambda message: True)
 def echo_all(message):
