@@ -1,11 +1,10 @@
 import os
 import telebot
 import requests
+# import send_eth
 
 API_KEY = os.getenv('API_KEY')
 bot = telebot.TeleBot(API_KEY)
-faucet_link = "https://goerlifaucet.com/"
-
 
 @bot.message_handler(commands = ['start'])
 def start(message):
@@ -30,23 +29,21 @@ def help(message):
 
 @bot.message_handler(commands = ['faucet'])
 def faucet(message):
-    msg = "Okey! Just paste your account address: "
+    msg = "Okey! I have your address now ! Please wait while I send you some tokens"
     print(f"{message.from_user.username}: {message.text}")
     print(f"Bot: {msg}")
+    
     bot.reply_to(message, msg)
-    # @bot.message_handler(func=lambda message: True)
-    # def get_address(message):
-    #     print(f"{message.from_user.username}: {message.text}")
-    #     address = message.text
-    #     url_faucet = 'https://goerlifaucet.com/'
-    #     response_search = requests.get(url_faucet)
-    #     print(f"Bot: Successful !" )
 
+    address = message.text[8:]
+    # send_eth(address) # chạy là mất tiền
+    bot.send_message(message.chat.id, "Successfully sent some tokens to your address !")
+    print(f"Bot: {msg}")
 
 @bot.message_handler(func=lambda message: True)
 def echo_all(message):
     print(f"{message.from_user.username}: {message.text}")
-    print(f"Bot: Con gà")
-    bot.reply_to(message, "Con gà")
+    print(f"Bot: Non")
+    bot.reply_to(message, "Non")
 
 bot.infinity_polling()
