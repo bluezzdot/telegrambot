@@ -36,6 +36,11 @@ def faucet(message):
     bot.reply_to(message, msg)
 
     address = message.text[8:]
+    if address[:2] != "0x" or len(address) != 42:
+        msg = "Invalid address! Please try again"
+        print(f"Bot: {msg}")
+        bot.send_message(message.chat.id, msg)
+        return
     # send_eth(address) # MẤT TIỀN
     msg2 = "Successfully sent some tokens to your address !"
     bot.send_message(message.chat.id, msg2)
