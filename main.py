@@ -1,7 +1,8 @@
 import os
 import telebot
 import requests
-# from send_bnb import send # MẤT TIỀN
+from send_bnb_testnet import send # TESTNET
+# from send_bnb import send # MAINNET. MẤT TIỀN
 
 API_KEY = os.getenv('API_KEY')
 bot = telebot.TeleBot(API_KEY)
@@ -45,7 +46,7 @@ def faucet(message):
         msg = "I have your address now ! Please wait while I send you some tokens"
         print(f"Bot: {msg}")
         bot.send_message(message.chat.id, msg)
-        # send_eth(address) # MẤT TIỀN
+        send(address)
         msg2 = "Successfully sent some tokens to your address !"
         bot.send_message(message.chat.id, msg2)
         print(f"Bot: {msg2}")
