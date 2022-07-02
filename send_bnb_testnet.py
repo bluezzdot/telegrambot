@@ -35,7 +35,7 @@ def send(receiver_address: str = '0x3c3abcB8648b7661F3697d5C0C62D4a7c1EdF452', s
     transaction = {
         'nonce': nonce,
         'to': add2,
-        # value send in bsc chain
+        # value send in bsc chain testnet
         'value': Web3.toWei(0.0001, 'ether'),
         'gas': 21005,
         'gasPrice': w3.toWei('50', 'gwei'),
